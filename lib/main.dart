@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'screens/menu_screen.dart';
+import 'screens/layout_screen.dart';
+import 'screens/counter_screen.dart';
+import 'screens/dynamic_list_screen.dart';
+import 'screens/guess_game_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,32 +16,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Example Widgets',
+      title: 'Practica de Flutter',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.teal,
+          foregroundColor: Colors.white,
+          centerTitle: false,
+        ),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        useMaterial3: false,
       ),
-      home: const AppBarScreen(), // Aquí llamamos la pantalla con el AppBar
+      home: const MenuScreen(),
+      routes: {
+        LayoutScreen.route: (_) => const LayoutScreen(),
+        CounterScreen.route: (_) => const CounterScreen(),
+        DynamicListScreen.route: (_) => const DynamicListScreen(),
+        GuessGameScreen.route: (_) => const GuessGameScreen(),
+      },
     );
-  }
-}
-
-class AppBarScreen extends StatelessWidget {
-  const AppBarScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: const Icon(Icons.account_circle_rounded),
-        backgroundColor: Colors.blueAccent,
-        title: const Text('My AppBar'),
-        elevation: 15,
-        shadowColor: Colors.blueGrey,
-      ), // AppBar
-      body: const Center(
-        child: Text('Hi, AppBar', style: TextStyle(fontSize: 20)),
-      ), // Body
-    ); // Scaffold
   }
 }
